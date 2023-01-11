@@ -63,21 +63,25 @@ def login_user(request):
     """
 
     data = {}
+    #   get payloads
     req_body = json.loads(request.body)
     email = req_body['email']
     password = req_body['password']
+    #   check if user has an account
     try:
         account = User.objects.get(email=email)
     except BaseException as e:
         raise ValidationError({"400": f'{str(e)}'})
-
+    #   get or create user token
     token = Token.objects.get_or_create(user=account)[0].key
+
+    #   check if passwords match
     if not check_password(password, account.password):
         return Response(
                 {"error": "Incorrect Login credentials"}, 
                 status=status.HTTP_404_NOT_FOUND
             )
-
+    #   return user info if account exists
     if account:
         login(request, account)
         data["message"] = "user logged in"
@@ -96,8 +100,8 @@ def user_logout(request):
     """
         API to logout a user
     """
+    #   if user is authenticated delete user token
     request.user.auth_token.delete()
-
+    #   logout user
     logout(request)
-
     return Response({'message': 'User logged out successfully'})
