@@ -46,10 +46,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # restframework
     "rest_framework",
     "rest_framework.authtoken",
+
+    # cron
     'django_crontab',
+
+    #   custom apps
     'account',
+    'monitor',
     
 ]
 
