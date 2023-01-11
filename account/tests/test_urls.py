@@ -5,7 +5,6 @@ from ..views import (
                         login_user,
                         user_logout
                     )
-from ..models import User
 
 
 class TestUrls(SimpleTestCase):
