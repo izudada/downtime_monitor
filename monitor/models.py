@@ -8,12 +8,11 @@ class Website(TrackingModel, models.Model):
     name = models.CharField(default="name", max_length=50, null=False)
     emails = models.JSONField(null=True)
     url = models.URLField(null=True)
-    state = models.BooleanField(default=True)
+    state = models.CharField(default="active", max_length=8)
 
     def __str__(self):
         return self.name
-    
-    # @property
+
     def get_logs(self):
         return list(self.weblog_set.all())
 
