@@ -159,7 +159,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRONJOBS = [
-    ('*/1 * * * *', 'monitor.cron.get_web_status', f'>> {BASE_DIR}/cron.log')
+    ('*/3 * * * *', 'monitor.cron.get_web_status', f'>> {BASE_DIR}/cron.log')
 ]
 
 #   Email Configuration
